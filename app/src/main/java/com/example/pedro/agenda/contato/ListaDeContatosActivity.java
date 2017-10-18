@@ -1,8 +1,10 @@
-package com.example.pedro.agenda;
+package com.example.pedro.agenda.contato;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.pedro.agenda.R;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -15,8 +17,9 @@ public class ListaDeContatosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_de_contatos);
         ButterKnife.bind(this);
     }
+
     @OnClick(R.id.botao_novo_contato)
-    void botao_novo_contato_click(){
+    void botao_novo_contato_click() {
         Intent abrirNovoContato = new Intent(ListaDeContatosActivity.this, CadastroDeContatoActivity.class);
         startActivity(abrirNovoContato);
     }

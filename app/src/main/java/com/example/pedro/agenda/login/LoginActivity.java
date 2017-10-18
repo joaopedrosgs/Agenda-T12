@@ -6,7 +6,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.pedro.agenda.CadastroDeContatoActivity;
+import com.example.pedro.agenda.contato.CadastroDeContatoActivity;
 import com.example.pedro.agenda.R;
 
 import butterknife.BindView;
