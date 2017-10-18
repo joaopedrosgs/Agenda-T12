@@ -42,11 +42,11 @@ public class CadastroContatoPresenter {
         }
 
     }
-    void retornoCamera(int requestCode, int resultCode, Intent data){
+    Bitmap retornoCamera(int requestCode, int resultCode, Intent data){
         if (requestCode == cadastroDeContatoActivity.REQUEST_IMAGE_CAPTURE && resultCode == cadastroDeContatoActivity.RESULT_OK) {
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            cadastroDeContatoActivity.foto_contato.setImageBitmap(imageBitmap);
+            return (Bitmap) extras.get("data");
         }
+        return null;
     }
 }

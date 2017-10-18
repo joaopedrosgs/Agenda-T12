@@ -44,6 +44,8 @@ public class CadastroDeContatoActivity extends AppCompatActivity {
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        cadastroContatoPresenter.retornoCamera(requestCode, resultCode, data);
+        Bitmap foto = cadastroContatoPresenter.retornoCamera(requestCode, resultCode, data);
+        foto_contato.setImageBitmap(foto);
+
     }
 }
