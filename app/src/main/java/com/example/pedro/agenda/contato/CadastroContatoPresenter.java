@@ -1,7 +1,9 @@
 package com.example.pedro.agenda.contato;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.widget.Toast;
 
@@ -32,11 +34,19 @@ public class CadastroContatoPresenter {
 
         Intent intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (intentCamera.resolveActivity(cadastroDeContatoActivity.getPackageManager()) != null) {
-            cadastroDeContatoActivity.startActivity(intentCamera);
+            cadastroDeContatoActivity.startActivityForResult(intentCamera, cadastroDeContatoActivity.REQUEST_IMAGE_CAPTURE);
+
         } else {
             Toast toast = Toast.makeText(cadastroDeContatoActivity, "Não foi possivel abrir o aplicativo de Camera", Toast.LENGTH_LONG);
             toast.show();
         }
 
+    }
+    void retornoCamera(int requestCode, int resultCode, Intent data){
+        if (requestCode == cadastroDeContatoActivity.REQUEST_IMAGE_CAPTURE && resultCode == cadastroDeContatoActivity.RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            cadastroDeContatoActivity.foto_contato.setImageBitmap(imageBitmap);
+        }
     }
 }
