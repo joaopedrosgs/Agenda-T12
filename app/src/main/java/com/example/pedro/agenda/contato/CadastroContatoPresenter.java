@@ -1,5 +1,6 @@
 package com.example.pedro.agenda.contato;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -12,38 +13,36 @@ import android.widget.Toast;
  */
 
 public class CadastroContatoPresenter {
-    CadastroDeContatoActivity cadastroDeContatoActivity;
+    CadastroContatoView cadastroContatoView;
 
-    public CadastroContatoPresenter(CadastroDeContatoActivity _cadastroDeContatoActivity) {
-        cadastroDeContatoActivity = _cadastroDeContatoActivity;
+    public CadastroContatoPresenter(CadastroContatoView _cadastroDeContatoActivity) {
+        cadastroContatoView = _cadastroDeContatoActivity;
     }
 
     void abrirMapa(String endereco) {
 
         Intent intentMapa = new Intent(Intent.ACTION_VIEW);
         intentMapa.setData(Uri.parse("geo:0,0?q=" + endereco));
-        if (intentMapa.resolveActivity(cadastroDeContatoActivity.getPackageManager()) != null) {
-            cadastroDeContatoActivity.startActivity(intentMapa);
+        if (intentMapa.resolveActivity(cadastroContatoView.getPackageManager()) != null) {
+            cadastroContatoView.startActivity(intentMapa);
         } else {
-            Toast toast = Toast.makeText(cadastroDeContatoActivity, "Não foi possivel abrir o aplicativo de Mapas", Toast.LENGTH_LONG);
-            toast.show();
+            cadastroContatoView.MostrarToast("Impossivel abrir o mapa");
         }
     }
 
     void abrirCamera() {
 
         Intent intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (intentCamera.resolveActivity(cadastroDeContatoActivity.getPackageManager()) != null) {
-            cadastroDeContatoActivity.startActivityForResult(intentCamera, cadastroDeContatoActivity.REQUEST_IMAGE_CAPTURE);
+        if (intentCamera.resolveActivity(cadastroContatoView.getPackageManager()) != null) {
+            cadastroContatoView.startActivityForResult(intentCamera, cadastroContatoView.REQUEST_IMAGE_CAPTURE);
 
         } else {
-            Toast toast = Toast.makeText(cadastroDeContatoActivity, "Não foi possivel abrir o aplicativo de Camera", Toast.LENGTH_LONG);
-            toast.show();
+            cadastroContatoView.MostrarToast("Impossivel abrir a camera");
         }
 
     }
     Bitmap retornoCamera(int requestCode, int resultCode, Intent data){
-        if (requestCode == cadastroDeContatoActivity.REQUEST_IMAGE_CAPTURE && resultCode == cadastroDeContatoActivity.RESULT_OK) {
+        if (requestCode == cadastroContatoView.REQUEST_IMAGE_CAPTURE && resultCode == cadastroContatoView.RESULT_OK) {
             Bundle extras = data.getExtras();
             return (Bitmap) extras.get("data");
         }

@@ -17,9 +17,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CadastroDeContatoActivity extends AppCompatActivity {
+public class CadastroDeContatoActivity extends AppCompatActivity implements CadastroContatoView {
     CadastroContatoPresenter cadastroContatoPresenter;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
     @BindView(R.id.text_edit_email)
     TextInputEditText text_endereco;
     @BindView(R.id.foto_contato)
@@ -42,10 +41,17 @@ public class CadastroDeContatoActivity extends AppCompatActivity {
     void abrirCamera() {
         cadastroContatoPresenter.abrirCamera();
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Bitmap foto = cadastroContatoPresenter.retornoCamera(requestCode, resultCode, data);
         foto_contato.setImageBitmap(foto);
 
+    }
+
+    @Override
+    public void MostrarToast(String s) {
+        Toast toast = Toast.makeText(this, "Não foi possivel abrir o aplicativo de Mapas", Toast.LENGTH_LONG);
+        toast.show();
     }
 }
