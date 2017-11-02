@@ -16,8 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".contato.ListaDeContatosActivity" />
-        <activity android:name=".contato.CadastroDeContatoActivity"></activity>
+        <activity android:name=".contato.ContatosActivity" />
+        <activity
+            android:name=".contato.CadastroDeContatoActivity" />
+
+        <activity
+            android:name=".cadastro_contato"
+            android:label="@string/title_activity_cadastro_contato"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

@@ -6,9 +6,8 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.pedro.agenda.contato.CadastroDeContatoActivity;
 import com.example.pedro.agenda.R;
-import com.example.pedro.agenda.contato.ListaDeContatosActivity;
+import com.example.pedro.agenda.contato.ContatosActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -68,7 +67,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void LoginSucesso() {
-        Intent abrirListaDeContatos = new Intent(LoginActivity.this, ListaDeContatosActivity.class);
+        Intent abrirListaDeContatos = new Intent(LoginActivity.this, ContatosActivity.class);
         startActivity(abrirListaDeContatos);
     }
 }

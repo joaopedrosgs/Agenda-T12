@@ -4,10 +4,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -22,22 +26,40 @@ public class CadastroDeContatoActivity extends AppCompatActivity implements Cada
     @BindView(R.id.text_edit_email)
     TextInputEditText text_endereco;
     @BindView(R.id.foto_contato)
-    ImageView foto_contato;
+    com.makeramen.roundedimageview.RoundedImageView foto_contato;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_de_contato);
-        ButterKnife.bind(this);
-        cadastroContatoPresenter = new CadastroContatoPresenter(CadastroDeContatoActivity.this);
-    }
+        setContentView(R.layout.activity_cadastro_contato);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-    @OnClick(R.id.button_add_local)
+        FloatingActionButton add_contato_action = (FloatingActionButton) findViewById(R.id.add_contato);
+        add_contato_action.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+        FloatingActionButton add_local_action = (FloatingActionButton) findViewById(R.id.add_contato);
+        add_local_action.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+        ButterKnife.bind(this);
+        cadastroContatoPresenter = new CadastroContatoPresenter(this);
+    }
+    @OnClick(R.id.add_location)
     void abrirMapas() {
         cadastroContatoPresenter.abrirMapa(text_endereco.getText().toString());
     }
 
-    @OnClick(R.id.button_add_foto)
+    @OnClick(R.id.foto_contato)
     void abrirCamera() {
         cadastroContatoPresenter.abrirCamera();
     }
